@@ -266,8 +266,21 @@ func (tinder *Tinder) Pass(recID string) error {
 }
 
 //GetRecommendations will get a list of people to like or pass on.
-func (tinder *Tinder) GetRecommendations() (resp RecommendationsResponse, err error) {
-	req, err := http.NewRequest("GET", tinder.Host+"/user/recs", nil)
+func (tinder *Tinder) GetRecommendations(limit int) (resp RecommendationsResponse, err error) {
+	var RecommendationsEmpty RecommendationsResponse
+	type reqBod struct {
+		Limit int `json:"limit"`
+	}
+	ReqStruct := &reqBod{
+		Limit: limit,
+	}
+	ReqData, err := json.Marshal(ReqStruct)
+	if err != nil {
+		return RecommendationsEmpty, err
+	}
+	ReqReader := bytes.NewReader(ReqData)
+
+	req, err := http.NewRequest("GET", tinder.Host+"/user/recs", ReqReader)
 	if err != nil {
 		return resp, err
 	}
