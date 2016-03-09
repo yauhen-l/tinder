@@ -172,10 +172,10 @@ func (tinder *Tinder) Report(ID string, Cause string) error {
 }
 
 //GetUpdates finds the latest updates such as new matches and new messages.
-func (tinder *Tinder) GetUpdates() (UpdatesResponse, error) {
+func (tinder *Tinder) GetUpdates(limit int) (UpdatesResponse, error) {
 	var UpdatesEmpty UpdatesResponse
 	UpdatesStruct := &Updates{
-		Limit: 40,
+		Limit: limit,
 	}
 	UpdatesData, err := json.Marshal(UpdatesStruct)
 	if err != nil {
