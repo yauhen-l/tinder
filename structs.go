@@ -140,6 +140,14 @@ type Recommendation struct {
 	CommonInterests   []CommonInterest `json:common_interests`
 }
 
+func (r Recommendation) SchoolsNames() []string {
+	names := []string{}
+	for _, sc := range r.Schools {
+		names = append(names, sc.Name)
+	}
+	return names
+}
+
 //RecommendationsResponse is the response you get from Recommendation.
 type RecommendationsResponse struct {
 	Status  int              `json:"status"`
