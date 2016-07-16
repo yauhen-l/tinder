@@ -125,17 +125,19 @@ type Photo struct {
 
 //Recommendation holds the info of a Recommendation.
 type Recommendation struct {
-	ID                string    `json:"_ID"`
-	Bio               string    `json:"bio"`
-	Birth             time.Time `json:"birth_date"`
-	BirthInfo         string    `json:"birth_date_info"`
-	Gender            int       `json:"gender"`
-	Name              string    `json:"name"`
-	DistanceInMiles   int       `json:"distance_mi"`
-	CommonLikeCount   int       `json:"common_like_count"`
-	CommonFriendCount int       `json:"common_friend_count"`
-	PingTime          string    `json:"ping_time"`
-	Photos            []Photo   `json:"photos"`
+	ID                string           `json:"_ID"`
+	Bio               string           `json:"bio"`
+	Birth             time.Time        `json:"birth_date"`
+	BirthInfo         string           `json:"birth_date_info"`
+	Gender            int              `json:"gender"`
+	Name              string           `json:"name"`
+	DistanceInMiles   int              `json:"distance_mi"`
+	CommonLikeCount   int              `json:"common_like_count"`
+	CommonFriendCount int              `json:"common_friend_count"`
+	PingTime          string           `json:"ping_time"`
+	Photos            []Photo          `json:"photos"`
+	Schools           []School         `json:"schools"`
+	CommonInterests   []CommonInterest `json:common_interests`
 }
 
 //RecommendationsResponse is the response you get from Recommendation.
@@ -144,3 +146,10 @@ type RecommendationsResponse struct {
 	Message string           `json:"message"`
 	Results []Recommendation `json:"results"`
 }
+
+type School struct {
+	Name string `json:"name"`
+	ID   string `json:"id"`
+}
+
+type CommonInterest string
