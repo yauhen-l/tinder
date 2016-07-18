@@ -148,6 +148,14 @@ func (r Recommendation) SchoolsNames() []string {
 	return names
 }
 
+func (r Recommendation) CommonInterestsNames() []string {
+	names := []string{}
+	for _, ci := range r.CommonInterests {
+		names = append(names, string(ci))
+	}
+	return names
+}
+
 //RecommendationsResponse is the response you get from Recommendation.
 type RecommendationsResponse struct {
 	Status  int              `json:"status"`
