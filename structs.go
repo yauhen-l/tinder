@@ -123,6 +123,12 @@ type Photo struct {
 	ProcessedFiles   []ProcessedFile `json:"processedFiles"`
 }
 
+// Job stuct
+type Job struct {
+	Title   string `json:"title"`
+	Company string `json:"company"`
+}
+
 //Recommendation holds the info of a Recommendation.
 type Recommendation struct {
 	ID                string           `json:"_ID"`
@@ -138,6 +144,7 @@ type Recommendation struct {
 	Photos            []Photo          `json:"photos"`
 	Schools           []School         `json:"schools"`
 	CommonInterests   []CommonInterest `json:common_interests`
+	Jobs              []Job            `json:"jobs"`
 }
 
 func (r Recommendation) SchoolsNames() []string {
@@ -152,6 +159,22 @@ func (r Recommendation) CommonInterestsNames() []string {
 	names := []string{}
 	for _, ci := range r.CommonInterests {
 		names = append(names, string(ci))
+	}
+	return names
+}
+
+func (r Recommendation) JobNames() []string {
+	names := make([]string, len(r.Jobs))
+	for i, job := range r.Jobs {
+		names[i] = job.Title
+	}
+	return names
+}
+
+func (r Recommendation) CompanyNames() []string {
+	names := make([]string, len(r.Jobs))
+	for i, job := range r.Jobs {
+		names[i] = job.Company
 	}
 	return names
 }
